@@ -1,7 +1,7 @@
-//Import express
+// Import express
 import express from 'express';
 
-//Initialite express app
+// Initialite express app
 const app = express();
 
 
