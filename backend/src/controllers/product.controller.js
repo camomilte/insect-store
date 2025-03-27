@@ -70,9 +70,9 @@ export const getProductById = async (req, res, next) => {
         // Get product by id from database
         const product = await Product.findById(productId).exec();
 
-        // Return error status 400 with message if product id is not found
+        // Return error status 404 with message if product id is not found
         if(!product) {
-            return res.status(400).json({ message: "The product you were looking for could not be found" });
+            return res.status(404).json({ message: "The product you were looking for could not be found" });
         };
 
         // Send retrieved product as JSON with a 200 status
