@@ -1,7 +1,7 @@
 // Import Express
 import express from 'express';
 //Import functions
-import { createProduct, getProducts } from '../controllers/product.controller.js';
+import { createProduct, getProductById, getProducts } from '../controllers/product.controller.js';
 
 
 // Create router
@@ -12,6 +12,9 @@ productRouter.post('/', createProduct);
 
 // Get all products in database
 productRouter.get('/', getProducts);
+
+// Get product by id
+productRouter.get('/:productId', getProductById);
 
 
 // Export router

@@ -6,7 +6,7 @@ import Product from "../models/product.model.js";
 //// /
 // Function to create new product
 //// /
-export const createProduct = async (req, res) => {
+export const createProduct = async (req, res, next) => {
     try {
         const { name, binomial, description, price, category, images } = req.body || {};
 
@@ -37,7 +37,7 @@ export const createProduct = async (req, res) => {
 //// /
 // Function to get all products
 //// /
-export const getProducts = async (req, res) => {
+export const getProducts = async (req, res, next) => {
     try {
         // Fetch all products from database
         const allProducts = await Product.find();
@@ -51,6 +51,40 @@ export const getProducts = async (req, res) => {
 
         // Send error to next middleware function in stack
         next(err);
+    }
+};
+
+//// /
+// Function to get product by id
+//// /
+export const getProductById = async (req, res, next) => {
+    try {
+        // Get product id
+        const { productId } = req.params;
+
+        // Validate if productId is valid MongoDB ObjectId
+        if(!mongoose.Types.ObjectId.isValid(productId)) {
+            return res.status(400).json({ message: "Invalid id" });
+        };
+
+        // Get product by id from database
+        const product = await Product.findById(productId).exec();
+
+        // Return error status 400 with message if product id is not found
+        if(!product) {
+            return res.status(400).json({ message: "The product you were looking for could not be found" });
+        };
+
+        // Send retrieved product as JSON with a 200 status
+        res.status(200).json(product);
+
+
+    } catch (err) {
+        // Log error message if fetching product fails
+        console.error("Error fetching product", err);
+
+        // Send error to next middleware function in stack
+        next(err);   
     }
 };
 
