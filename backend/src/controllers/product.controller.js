@@ -9,7 +9,6 @@ import Product from "../models/product.model.js";
 export const createProduct = async (req, res) => {
     try {
         const { name, binomial, description, price, category, images } = req.body || {};
-        console.log(req.body) 
 
         // Validate required fields
         if( !name || !binomial || !description || !price ) {
@@ -29,6 +28,7 @@ export const createProduct = async (req, res) => {
     } catch (err) {
         // Log error
         console.error("Error creating product", err);
+
         // Send error to next function in stack
         next(err);
     }
@@ -37,11 +37,20 @@ export const createProduct = async (req, res) => {
 //// /
 // Function to get all products
 //// /
-/* export const getProducts = async (req, res) => {
+export const getProducts = async (req, res) => {
     try {
-        
-    } catch (error) {
-        
+        // Fetch all products from database
+        const allProducts = await Product.find();
+
+        // Send retrieved products as JSON with a 200 status
+        res.status(200).json(allProducts);
+
+    } catch (err) {
+        // Log error message if fetching products fail
+        console.error("Error fetching products", err);
+
+        // Send error to next middleware function in stack
+        next(err);
     }
-}; */
+};
 
