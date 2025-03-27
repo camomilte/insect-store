@@ -88,3 +88,53 @@ export const getProductById = async (req, res, next) => {
     }
 };
 
+export const updateProduct = async (req, res, next) => {
+    try {
+        // Extract product id and other fields from request body
+        const { productId } = req.params;
+        const { name, binomial, description, price, category, images } = req.body;
+
+        // Validate if productId is valid MongoDB ObjectId
+        if(!mongoose.Types.ObjectId.isValid(productId)) {
+            // Return error and message if id is invalid
+            return res.status(400).json({ message: "Invalid id" });
+        };
+
+        // Prepare update object
+        const toUpdate = {};
+
+        if(name) toUpdate.name = name;  // If 'name' is provided, add it to the update object
+        if(binomial) toUpdate.binomial = binomial;  // If 'binomial' is provided, add it to the update object
+        if(description) toUpdate.description = description;  // If 'description' is provided, add it to the update object
+        if(price) toUpdate.price = price;  // If 'price' is provided, add it to the update object
+        if(category) toUpdate.category = category;  // If 'category' is provided, add it to the update object
+        if(images) toUpdate.images = images;  // If 'images' is provided, add it to the update object
+
+        // If no fields are provided for update, return error response
+        if(Object.keys(toUpdate).length === 0) {
+            return res.json(400).json({ message: "No changes provided "});
+        };
+
+        // Update product using productId and the update object
+        const updatedProduct = await Product.findByIdAndUpdate(productId, toUpdate, { new: true });
+
+        // If no product is found return a 404 error with message
+        if(!updatedProduct) {
+            return res.status(404).json({ message: "Could not find the product that you were looking for" });
+        };
+
+        // Respond with a success status and the updated data
+        res.status(200).json({
+            message: "Product updated successfully", // Success message
+            data: updatedProduct // Updated product data
+        });
+
+    } catch (err) {
+        // Log error message if updating product fails
+        console.error("Error updating product", err);
+
+        // Send error to next middleware function in stack
+        next(err); 
+    }
+};
+

@@ -34,6 +34,7 @@ const productSchema = new mongoose.Schema({
     images: [{
         type: String, // Image URLs stored as strings
         trim: true, 
+        match: /^https?:\/\/.*\.(jpg|jpeg|png)$/ // Validate image URLs
         }]
     }, { timestamps: true }); // Automatically adds createdAt and updatedAt fields
 
