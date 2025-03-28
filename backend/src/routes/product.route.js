@@ -1,7 +1,7 @@
 // Import Express
 import express from 'express';
 //Import functions
-import { createProduct, getProductById, getProducts, updateProduct } from '../controllers/product.controller.js';
+import { createProduct, deleteProduct, getProductById, getProducts, updateProduct } from '../controllers/product.controller.js';
 
 
 // Create router
@@ -18,6 +18,9 @@ productRouter.get('/:productId', getProductById);
 
 // Update product
 productRouter.patch('/:productId', updateProduct);
+
+// Delete product
+productRouter.delete('/:productId', deleteProduct);
 
 
 // Export router

@@ -116,7 +116,7 @@ export const updateProduct = async (req, res, next) => {
         };
 
         // Update product using productId and the update object
-        const updatedProduct = await Product.findByIdAndUpdate(productId, toUpdate, { new: true });
+        const updatedProduct = await Product.findByIdAndUpdate(productId, toUpdate, { new: true }).exec();
 
         // If no product is found return a 404 error with message
         if(!updatedProduct) {
@@ -132,6 +132,40 @@ export const updateProduct = async (req, res, next) => {
     } catch (err) {
         // Log error message if updating product fails
         console.error("Error updating product", err);
+
+        // Send error to next middleware function in stack
+        next(err); 
+    }
+};
+
+//// /
+// Function do find and delete product by Id
+//// /
+export const deleteProduct = async (req, res, next) => {
+    try {
+        // Get product id
+        const { productId } = req.params;
+    
+        // Validate if productId is valid MongoDB ObjectId
+        if(!mongoose.Types.ObjectId.isValid(productId)) {
+            // Return error and message if id is invalid
+            return res.status(400).json({ message: "Invalid id" });
+        };
+    
+        // Find and delete product using productId provided
+        const product = await Product.findByIdAndDelete(productId).exec();
+    
+        // If no product is found return a 404 error with message
+        if(!product) {
+            return res.status(404).json({ message: "Could not find the product that you were looking for"});
+        };
+    
+        // Respond with success status and message
+        res.status(200).json({ message: `Successfully deleted product. Id: ${productId}`});
+
+    } catch (err) {
+        // Log error message if deleting product fails
+        console.error("Error deleting product", err);
 
         // Send error to next middleware function in stack
         next(err); 
