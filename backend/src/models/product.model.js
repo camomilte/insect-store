@@ -33,9 +33,13 @@ const productSchema = new mongoose.Schema({
         },
     images: [{
         type: String, // Image URLs stored as strings
-        trim: true, 
-        match: /^https?:\/\/.*\.(jpg|jpeg|png)$/ // Validate image URLs
-        }]
+        trim: true
+        }],
+    comments: [{ 
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Comment',
+        default: '' // Handles existing document that don't have comment
+    }]
     }, { timestamps: true }); // Automatically adds createdAt and updatedAt fields
 
 // Create a Mongoose model for the 'Product' collection

@@ -40,7 +40,7 @@ export const createProduct = async (req, res, next) => {
 export const getProducts = async (req, res, next) => {
     try {
         // Fetch all products from database
-        const allProducts = await Product.find();
+        const allProducts = await Product.find().populate('comments');
 
         // Send retrieved products as JSON with a 200 status
         res.status(200).json(allProducts);
@@ -171,4 +171,7 @@ export const deleteProduct = async (req, res, next) => {
         next(err); 
     }
 };
+
+
+
 
