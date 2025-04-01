@@ -15,29 +15,31 @@ productRouter.route('/')
     .get(getProducts);
 
 productRouter.route('/:productId')
+    // Get product by id
     .get(getProductById)
+    // Update product
     .patch(updateProduct)
+    // Delete product
     .delete(deleteProduct);
 
 productRouter.route('/:productId/comments')
-    .post(createComment)
+    // Create new comment
+    .post(createComment);
 
-
-
-    /* // Create new product
-productRouter.post('/', createProduct);
+// Create new product
+////productRouter.post('/', createProduct);
 
 // Get all products in database
-productRouter.get('/', getProducts);
+////productRouter.get('/', getProducts);
 
 // Get product by id
-productRouter.get('/:productId', getProductById);
+////productRouter.get('/:productId', getProductById);
 
 // Update product
-productRouter.patch('/:productId', updateProduct);
+////productRouter.patch('/:productId', updateProduct);
 
 // Delete product
-productRouter.delete('/:productId', deleteProduct); */
+////productRouter.delete('/:productId', deleteProduct);
 
 
 // Export router

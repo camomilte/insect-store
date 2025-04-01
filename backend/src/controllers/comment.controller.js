@@ -1,12 +1,12 @@
 // Import mongoose
 import mongoose from "mongoose";
-// Import comment model
+// Import models
 import Comment from "../models/comment.model.js";
 import Product from "../models/product.model.js";
 
-//// /
+/// /
 // Function to create new comment
-//// /
+/// /
 export const createComment = async (req, res, next) => {
     try {
         // Extract product id and comment content from request body
@@ -51,16 +51,47 @@ export const createComment = async (req, res, next) => {
     }
 };
 
-//// /
+/// /
 // Function to delete comment by commentId
-//// /
+/// /
 export const deleteComment = async (req, res, next) => {
-    // Extract comment id
-    const { commentId } = req.params;
+    try {
+        // Extract comment id
+        const { commentId } = req.params;
+    
+        // Validate if commentId is valid MongoDB ObjectId
+        if(!mongoose.Types.ObjectId.isValid(commentId)) {
+            // Return error and message if id is invalid
+            return res.status(400).json({ message: "Invalid id" });
+        };
 
-    // Validate if commentId is valid MongoDB ObjectId
-    if(!mongoose.Types.ObjectId.isValid(commentId)) {
-        // Return error and message if id is invalid
-        return res.status(400).json({ message: "Invalid id" });
-    };
-}
+        // Find comment by id
+        const comment = await Comment.findById(commentId).exec();
+        if(!comment) {
+            return res.status(404).json({ message: "Could not find the comment" });    
+        };
+        
+        //// TODO: Check if admin or regular user ////
+
+        // Find associated product
+        const product = await Product.findById(comment.product).exec();
+        if(product) {
+            // Remove comment from product's array
+            product.comments = product.comments.filter(comment => comment.toString() !== commentId);
+            await product.save();
+        };
+
+        // Delete comment
+        await Comment.deleteOne({ _id: commentId }).exec();
+  
+        // Send success response with status 200 and success message
+        res.status(200).json({ message: "Comment deleted successfully" });
+        
+    } catch (err) {
+        // Log error message if deleting product fails
+        console.error("Error deleting comment", err);
+
+        // Send error to next middleware function in stack
+        next(err); 
+    } 
+};
