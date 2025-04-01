@@ -26,21 +26,5 @@ productRouter.route('/:productId/comments')
     // Create new comment
     .post(createComment);
 
-// Create new product
-////productRouter.post('/', createProduct);
-
-// Get all products in database
-////productRouter.get('/', getProducts);
-
-// Get product by id
-////productRouter.get('/:productId', getProductById);
-
-// Update product
-////productRouter.patch('/:productId', updateProduct);
-
-// Delete product
-////productRouter.delete('/:productId', deleteProduct);
-
-
 // Export router
 export default productRouter;

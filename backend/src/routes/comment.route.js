@@ -5,7 +5,8 @@ import { deleteComment } from '../controllers/comment.controller.js';
 // Create router
 const commentRouter = express.Router();
 
-
+// Delete comment
 commentRouter.delete('/:commentId', deleteComment);
 
+// Export router
 export default commentRouter;
