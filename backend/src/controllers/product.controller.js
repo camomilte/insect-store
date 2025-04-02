@@ -39,8 +39,14 @@ export const createProduct = async (req, res, next) => {
 //// /
 export const getProducts = async (req, res, next) => {
     try {
-        // Fetch all products from database
-        const allProducts = await Product.find().populate('comments');
+        // Fetch all products from database including associated comments
+        const allProducts = await Product.find().populate({
+            path: 'comments',
+            populate: {
+                path: 'user',
+                select: 'username'
+            }
+        });
 
         // Send retrieved products as JSON with a 200 status
         res.status(200).json(allProducts);
@@ -67,8 +73,14 @@ export const getProductById = async (req, res, next) => {
             return res.status(400).json({ message: "Invalid id" });
         };
 
-        // Get product by id from database
-        const product = await Product.findById(productId).exec();
+        // Get product by id from database and associated comments
+        const product = await Product.findById(productId).populate({
+            path: 'comments',
+            populate: {
+                path: 'user',
+                select: 'username'
+            }
+        });
 
         // Return error status 404 with message if product id is not found
         if(!product) {

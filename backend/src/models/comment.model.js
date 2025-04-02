@@ -7,7 +7,11 @@ const commentSchema = new mongoose.Schema ({
         type: String, // Comment is stored as a string
         required: true // Comment is mandatory to avoid empty comment
     },
-    // User will be included here shortly
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
     product: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Product',

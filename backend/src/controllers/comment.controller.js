@@ -9,8 +9,9 @@ import Product from "../models/product.model.js";
 /// /
 export const createComment = async (req, res, next) => {
     try {
-        // Extract product id and comment content from request body
+        // Extract product id, comment content and user from request body
         const { content } = req.body;
+        const user = req.user._id;
         const productId = req.params.productId;
 
         // Validate required fields
