@@ -71,8 +71,12 @@ export const deleteComment = async (req, res, next) => {
         if(!comment) {
             return res.status(404).json({ message: "Could not find the comment" });    
         };
-        
-        //// TODO: Check if admin or regular user ////
+
+        // Check if user id matches or if user is admin
+        if(comment.user.toString() !== req.user._id && req.user.role !== "admin") {
+            // If user id does not match or if user is not admin, return error response with status 403
+            return res.status(403).json({ message: "You do not have access to delete this comment" });
+        };
 
         // Find associated product
         const product = await Product.findById(comment.product).exec();

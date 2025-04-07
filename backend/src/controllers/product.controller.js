@@ -100,13 +100,16 @@ export const getProductById = async (req, res, next) => {
     }
 };
 
+//// /
+// Function to update product
+//// /
 export const updateProduct = async (req, res, next) => {
     try {
         // Extract product id and other fields from request body
         const { productId } = req.params;
         const { name, binomial, description, price, category, images } = req.body;
 
-        // Validate if productId is valid MongoDB ObjectId
+        // Check if productId is valid MongoDB ObjectId
         if(!mongoose.Types.ObjectId.isValid(productId)) {
             // Return error and message if id is invalid
             return res.status(400).json({ message: "Invalid id" });

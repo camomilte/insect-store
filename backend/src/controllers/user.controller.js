@@ -5,6 +5,7 @@ import bcrypt from "bcryptjs";
 // Import user model
 import User from "../models/user.model.js";
 import { generateToken } from "../lib/generateToken.js";
+import ROLES from "../constants/roles.js";
 
 //// /
 // Function to register user
@@ -132,5 +133,55 @@ export const getUser = async (req, res, next) => {
 
          // Send error to next middleware function in stack
          next(err); 
+    }
+};
+
+//// /
+// Function to update role
+//// /
+export const updateRole = async (req, res, next) => {
+    try {
+        // Extract user from request body
+        const { role } = req.body;
+        // Get all roles
+        const rolesArray = Object.values(ROLES);
+
+        // Validate if any role is provided
+        if(!role) {
+            // If no role is provided return error response
+            return res.status(400).json({ message: `Please enter one of following roles: (${rolesArray.join(', ')})` });
+        };
+
+        // Trim and convert role to lowercase
+        const normalizedRole = role.trim().toLowerCase();
+
+        // Validate if role provided exists
+        if(!rolesArray.includes(normalizedRole)) {
+            // If role does not match any available roles return error response
+            return res.status(400).json({ message: `Roles must be one of the following: (${rolesArray.join(', ')})` });
+        };
+
+        // Get user by userId
+        const user = await User.findById(req.params.userId).exec();
+
+        // Validate if user exists
+        if(!user) {
+            // If user does not exist in database return error response
+            return res.status(404).json({ message: "User not found" })
+        };
+
+        // Update role
+        user.role = normalizedRole;
+        await user.save();
+
+        // Respond with a success status and updated role
+        res.status(200).json({ message: "Role succefully updated to " + normalizedRole });
+        
+    } catch (err) {
+        // Log error message if updating role fails
+        console.error("Error updating role", err);
+
+        // Send error to next middleware function in stack
+        next(err); 
     }
 };
