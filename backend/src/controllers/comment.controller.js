@@ -31,7 +31,7 @@ export const createComment = async (req, res, next) => {
         }
 
         // Create comment and associate with product
-        const comment = await Comment.create({ content, product: productId });
+        const comment = await Comment.create({ content, product: productId, user });
         await comment.save();
 
         // Add comment to product comment array and save
@@ -92,7 +92,7 @@ export const deleteComment = async (req, res, next) => {
         // Log error message if deleting product fails
         console.error("Error deleting comment", err);
 
-        // Send error to next middleware function in stack
+        // Send error to next middleware function in stackx
         next(err); 
     } 
 };

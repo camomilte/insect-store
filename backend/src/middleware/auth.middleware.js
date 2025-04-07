@@ -29,3 +29,18 @@ export const verifyToken = (req, res, next) => {
         return res.status(401).json({ message: "Not authenticated." });
     }
 };
+
+export const verifyRoles = (...allowedRoles) => {
+    return (req, res, next) => {
+
+        if(!req.user.role) {
+            return res.status(403).json({ message: "Access denied. No role assigned" });
+        };
+
+        if(!allowedRoles.some(role => req.user.role === role)) {
+            return res.status(403).json({ message: `Access denied. Required roles: (${allowedRoles.join(', ')})` });
+        };
+
+        next();
+    }
+};

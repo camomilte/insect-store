@@ -2,7 +2,8 @@
 import express from 'express';
 // Import functions
 import { getUser, login, register } from '../controllers/user.controller.js';
-import { verifyToken } from '../middleware/auth.middleware.js';
+import { verifyRoles, verifyToken } from '../middleware/auth.middleware.js';
+import ROLES from '../constants/roles.js';
 
 // Create router
 const userRouter = express.Router();
