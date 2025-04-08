@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brown: #3f2d2d;
+  --color-brown-50: #f4f0f0;
+  --color-brown-100: #eae1e1;
+  --color-brown-200: #d5c3c3;
+  --color-brown-300: #c0a5a5;
+  --color-brown-400: #aa8888;
+  --color-brown-500: #956a6a;
+  --color-brown-600: #775555;
+  --color-brown-700: #5a3f3f;
+  --color-brown-800: #3c2a2a;
+  --color-brown-900: #1e1515;
+  --color-brown-950: #0f0b0b;
+
+  --color-cream: #f3dfce;
+  --color-cream-50: #faf2ea;
+  --color-cream-100: #f5e4d6;
+  --color-cream-200: #ebcaad;
+  --color-cream-300: #e1af84;
+  --color-cream-400: #d7955b;
+  --color-cream-500: #cd7a32;
+  --color-cream-600: #a46228;
+  --color-cream-700: #7b491e;
+  --color-cream-800: #523114;
+  --color-cream-900: #29180a;
+  --color-cream-950: #150c05;
+
+  --color-softred: #df5757;
+  --color-softred-50: #fbeaea;
+  --color-softred-100: #f7d4d4;
+  --color-softred-200: #efa9a9;
+  --color-softred-300: #e77e7e;
+  --color-softred-400: #de5454;
+  --color-softred-500: #d62929;
+  --color-softred-600: #ab2121;
+  --color-softred-700: #811818;
+  --color-softred-800: #561010;
+  --color-softred-900: #2b0808;
+  --color-softred-950: #150404;
+
+  --color-salmon: #f39e9e;
+  --color-salmon-50: #fce8e8;
+  --color-salmon-100: #f9d2d2;
+  --color-salmon-200: #f4a4a4;
+  --color-salmon-300: #ee7777;
+  --color-salmon-400: #e94949;
+  --color-salmon-500: #e31c1c;
+  --color-salmon-600: #b61616;
+  --color-salmon-700: #881111;
+  --color-salmon-800: #5b0b0b;
+  --color-salmon-900: #2d0606;
+  --color-salmon-950: #170303;
+
+  --color-terracotta: #9b1212;
+  --color-terracotta-50: #fce8e8;
+  --color-terracotta-100: #fad1d1;
+  --color-terracotta-200: #f4a4a4;
+  --color-terracotta-300: #ef7676;
+  --color-terracotta-400: #ea4848;
+  --color-terracotta-500: #e41b1b;
+  --color-terracotta-600: #b71515;
+  --color-terracotta-700: #891010;
+  --color-terracotta-800: #5b0b0b;
+  --color-terracotta-900: #2e0505;
+  --color-terracotta-950: #170303;
+}
+
+.wrapper {
+  @apply container mx-auto px-4;
+}
+
+
+/* 
+  text: stone 800
+  background: orange 100
+  primary: red 500
+  secondary: red 300
+  accent: red 900
+*/
