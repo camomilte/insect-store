@@ -1,13 +1,18 @@
 import { Outlet } from "react-router";
-import { FaGithub } from "react-icons/fa";
+/* Import components */
+import Navbar from "../components/Navbar";
+/* Import icons */
+import { RiReactjsFill, RiTailwindCssFill } from "react-icons/ri";
+import { BiLogoMongodb } from "react-icons/bi";
+import { SiVite } from "react-icons/si";
 
 const Rootlayout = () => {
   return (
     <div className="bg-cream min-h-svh text-brown grid grid-rows-[auto_1fr_auto]">
         
         {/* Navbar */}
-        <div className="h-30 border-b border-b-brown-300">Navbar</div>
-        
+        <Navbar />
+ 
         <main>
             <Outlet />
         </main>
@@ -15,10 +20,20 @@ const Rootlayout = () => {
         {/* Footer */}
         <div className="bg-brown py-4">
             <div className="wrapper">
-                <p className="text-cream text-center">&copy; camomilte {new Date().getFullYear()}</p>
-                <div>
-                    <FaGithub />
-
+                <p className="text-cream text-center font-poppins">&copy; camomilte {new Date().getFullYear()}</p>
+                <div className="flex justify-center gap-3 my-2" >
+                    <a href="https://react.dev/">
+                        <RiReactjsFill className="text-cream text-3xl"/>
+                    </a>
+                    <a href="https://vite.dev/">
+                        <SiVite className="text-cream text-3xl"/>
+                    </a>
+                    <a href="https://tailwindcss.com/">
+                        <RiTailwindCssFill className="text-cream text-3xl"/>
+                    </a>
+                    <a href="https://www.mongodb.com/">
+                        <BiLogoMongodb className="text-cream text-3xl"/>
+                    </a>
                 </div>
             </div>
         </div>
