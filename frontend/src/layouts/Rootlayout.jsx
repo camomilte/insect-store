@@ -11,7 +11,10 @@ const Rootlayout = () => {
     <div className="bg-cream min-h-svh font-poppins text-brown grid grid-rows-[auto_1fr_auto]">
         
         {/* Navbar */}
-        <Navbar />
+        <div className="border-b border-b-brown-300">
+            <Navbar />
+
+        </div>
  
         <main>
             <Outlet />

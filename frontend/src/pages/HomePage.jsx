@@ -44,7 +44,7 @@ const HomePage = () => {
         <h2 className="text-3xl text-center mb-5 font-semibold">Discover the tiny wonders of the world!</h2>
         <p className="text-center text-brown/70s">From buzzing beetles to fluttering moths, our shop is crawling with nature’s most fascinating bugs. Whether you're a curious collector, a nature-loving hobbyist, or just bugging out for fun, we’ve got something for everyone.</p>
       </div>
-      <div>
+      <div className="space-y-7 pb-20">
         {
           !!products.length
           ? products.map(product => (
@@ -54,12 +54,14 @@ const HomePage = () => {
 
             ))
             : (
-              <div></div>
+              <div className="wrapper">
+                <h2 className="font-medium text-4xl text-center">No products here...</h2>
+              </div>
             )
-        }
+          }
       </div>
     </div>
   )
 }
 
-export default HomePage
+export default HomePage;
