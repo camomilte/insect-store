@@ -8,7 +8,7 @@ import { SiVite } from "react-icons/si";
 
 const Rootlayout = () => {
   return (
-    <div className="bg-cream min-h-svh text-brown grid grid-rows-[auto_1fr_auto]">
+    <div className="bg-cream min-h-svh font-poppins text-brown grid grid-rows-[auto_1fr_auto]">
         
         {/* Navbar */}
         <Navbar />
@@ -20,7 +20,7 @@ const Rootlayout = () => {
         {/* Footer */}
         <div className="bg-brown py-4">
             <div className="wrapper">
-                <p className="text-cream text-center font-poppins">&copy; camomilte {new Date().getFullYear()}</p>
+                <p className="text-cream text-center">&copy; camomilte {new Date().getFullYear()}</p>
                 <div className="flex justify-center gap-3 my-2" >
                     <a href="https://react.dev/">
                         <RiReactjsFill className="text-cream text-3xl"/>
