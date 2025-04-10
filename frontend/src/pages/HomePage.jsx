@@ -40,9 +40,15 @@ const HomePage = () => {
 
   return (
     <div className="wrapper">
-      <div className="my-10">
+      <div className="my-10 lg:max-w-7/10 mx-auto">
         <h2 className="text-3xl text-center mb-5 font-semibold">Discover the tiny wonders of the world!</h2>
-        <p className="text-center text-brown/70s">From buzzing beetles to fluttering moths, our shop is crawling with nature’s most fascinating bugs. Whether you're a curious collector, a nature-loving hobbyist, or just bugging out for fun, we’ve got something for everyone.</p>
+        <p className="text-center text-brown-600">From buzzing beetles to fluttering moths, our shop is crawling with nature’s most fascinating bugs. Whether you're a curious collector, a nature-loving hobbyist, or just bugging out for fun, we’ve got something for everyone.</p>
+      </div>
+      <div className="flex gap-3 justify-center my-10">
+        <button type="button" className="bg-salmon py-3 px-5 rounded-md text-brown/70 hover:bg-salmon-300">Moths</button>
+        <button type="button" className="bg-salmon py-3 px-5 rounded-md text-brown/70 hover:bg-salmon-300">Spiders</button>
+        <button type="button" className="bg-salmon py-3 px-5 rounded-md text-brown/70 hover:bg-salmon-300">Millipedes</button>
+        <button type="button" className="bg-salmon py-3 px-5 rounded-md text-brown/70 hover:bg-salmon-300">Isopods</button>
       </div>
       <div className="space-y-7 pb-20">
         {
