@@ -1,6 +1,6 @@
 const ProductCard = ({product}) => {
   return (
-    <div className="bg-terracotta/10 rounded-lg p-5 flex justify-between gap-7 flex-row lg:max-w-8/10 mx-auto min-h-100">
+    <div className="bg-softred/8 rounded-lg p-5 flex justify-between gap-7 flex-row lg:max-w-8/10 mx-auto min-h-100">
         <div className="basis-1/3">
             <img src={product.images[0]} alt={product.name || "Product image"} className="w-full h-full object-cover rounded-sm"></img>
         </div>
@@ -14,8 +14,8 @@ const ProductCard = ({product}) => {
             <p className="text-brown/70">{product.description}</p>
  
             <div className="flex gap-3">
-                <button type="button" className="bg-softred text-cream px-7 py-3 rounded-md hover:bg-terracotta/70">Add to Cart</button>
-                <button type="button" className="border text-softred px-7 py-3 rounded-md hover:bg-softred hover:text-cream">Add to Wishlist</button>
+                <button type="button" className="btn-primary">Add to Cart</button>
+                <button type="button" className="btn-secondary">Add to Wishlist</button>
             </div>
             
         </div>

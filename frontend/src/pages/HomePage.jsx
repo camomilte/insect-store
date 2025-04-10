@@ -45,10 +45,10 @@ const HomePage = () => {
         <p className="text-center text-brown-600">From buzzing beetles to fluttering moths, our shop is crawling with nature’s most fascinating bugs. Whether you're a curious collector, a nature-loving hobbyist, or just bugging out for fun, we’ve got something for everyone.</p>
       </div>
       <div className="flex gap-3 justify-center my-10">
-        <button type="button" className="bg-salmon py-3 px-5 rounded-md text-brown/70 hover:bg-salmon-300">Moths</button>
-        <button type="button" className="bg-salmon py-3 px-5 rounded-md text-brown/70 hover:bg-salmon-300">Spiders</button>
-        <button type="button" className="bg-salmon py-3 px-5 rounded-md text-brown/70 hover:bg-salmon-300">Millipedes</button>
-        <button type="button" className="bg-salmon py-3 px-5 rounded-md text-brown/70 hover:bg-salmon-300">Isopods</button>
+        <button type="button" className="bg-salmon/40 py-3 px-5 rounded-md text-brown hover:bg-salmon">Moths</button>
+        <button type="button" className="bg-salmon/40 py-3 px-5 rounded-md text-brown hover:bg-salmon">Spiders</button>
+        <button type="button" className="bg-salmon/40 py-3 px-5 rounded-md text-brown hover:bg-salmon">Millipedes</button>
+        <button type="button" className="bg-salmon/40 py-3 px-5 rounded-md text-brown hover:bg-salmon">Isopods</button>
       </div>
       <div className="space-y-7 pb-20">
         {

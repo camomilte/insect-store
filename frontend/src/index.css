@@ -29,7 +29,7 @@
   --color-cream-900: #29180a;
   --color-cream-950: #150c05;
 
-  --color-softred: #df5757;
+  --color-softred: #df5858;
   --color-softred-50: #fbeaea;
   --color-softred-100: #f7d4d4;
   --color-softred-200: #efa9a9;
@@ -42,7 +42,7 @@
   --color-softred-900: #2b0808;
   --color-softred-950: #150404;
 
-  --color-salmon: #f39e9e;
+  --color-salmon: #f3a0a0;
   --color-salmon-50: #fce8e8;
   --color-salmon-100: #f9d2d2;
   --color-salmon-200: #f4a4a4;
@@ -75,4 +75,8 @@
 
 .wrapper {
   @apply container mx-auto px-4;
+}
+
+.btn-primary {
+  @apply bg-softred text-cream px-7 py-3 rounded-md hover:bg-terracotta/70
 }

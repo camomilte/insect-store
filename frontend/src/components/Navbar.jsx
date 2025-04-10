@@ -12,8 +12,8 @@ const Navbar = () => {
         <h1 className="text-2xl font-bodoni font-semibold text-terracotta">Little Legs <br/>Boutique</h1>
       </Link>
       <ul className="flex items-center gap-7">
-        <li><NavLink className="[&.active]:underline font-medium text-xl" to="/">Shop</NavLink></li>
-        <li><NavLink className="[&.active]:underline font-medium text-xl" to="/login">Login</NavLink></li>
+        <li><NavLink className="[&.active]:underline font-medium text-md" to="/">Shop</NavLink></li>
+        <li><NavLink className="[&.active]:underline font-medium text-md" to="/login">Login</NavLink></li>
       </ul>
     </div>
   )
