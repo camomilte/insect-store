@@ -80,3 +80,7 @@
 .btn-primary {
   @apply bg-softred text-cream px-7 py-3 rounded-md hover:bg-terracotta/70
 }
+
+.btn-secondary {
+ @apply border text-softred px-7 py-3 rounded-md hover:bg-softred hover:text-cream
+}
