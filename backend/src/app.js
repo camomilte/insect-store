@@ -5,6 +5,7 @@ import express from 'express';
 import productRouter from './routes/product.route.js';
 import commentRouter from './routes/comment.route.js';
 import userRouter from './routes/user.route.js';
+import orderRouter from './routes/order.route.js';
 
 // Import middlewares
 import { errorHandler, notFound } from './middleware/error.middleware.js';
@@ -32,12 +33,13 @@ app.use(cors({
 // Parse json
 app.use(express.json());
 
-// Routes for handling product-related request
-app.use('/api/products', productRouter);
-// Routes for handling comments on products
-app.use('/api/comments', commentRouter);
-//Routes for handling user authentication (login, register, etc.)
-app.use('/api/auth', userRouter);
+/// /
+// Routes
+/// /
+app.use('/api/products', productRouter); // Handling products
+app.use('/api/comments', commentRouter); // Handling comments
+app.use('/api/auth', userRouter); // Handling authentitaction (login, register ect.)
+app.use('/api/orders', orderRouter); // Handles orders
 
 
 // Not Found middleware

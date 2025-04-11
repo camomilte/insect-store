@@ -1,12 +1,14 @@
 // Import Express
 import express from 'express';
+import { createOrder } from '../controllers/order.controller.js';
 
 // Import functions
 
 // Create router
 const orderRouter = express.Router();
 
-//TODO: Create order
+// Create new order
+orderRouter.post('/', createOrder);
 
 //TODO: Get order by user
 
