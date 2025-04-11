@@ -10,12 +10,13 @@ import Product from "../models/product.model.js";
 export const createOrder = async (req, res, next) => {
     try {
         // Get required fields from the request body
-        const { user, products } = req.body;
+        const user = req.user._id;
+        const { products } = req.body;
         let totalPrice = 0;
         
         // Validate if required fields are filled
-        if(!user || !products ) {
-            return res.status(400).json({ message: "Order data is missing or incomplete" });
+        if(!products || !Array.isArray(products)) {
+            return res.status(400).json({ message: "Products are missing or invalid" });
         };
 
         // Validate each product in the order
