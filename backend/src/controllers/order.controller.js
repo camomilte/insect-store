@@ -58,6 +58,33 @@ export const createOrder = async (req, res, next) => {
     }
 };
 
+/// /
+// Function to delete order
+/// /
+export const deleteOrder = async => {
+    try {
+        const { orderId } = req.params;
+
+        // Validate if orderId is valid MongoDB ObjectId
+        if(!mongoose.Types.ObjectId.isValid(orderId)) {
+            return res.status(400).json({ message: `Invalid order id: ${orderId}` });
+        };
+
+
+        // Find and delete order
+        const deleteOrder = await Order.findByIdAndDelete(orderId).exec();
+
+
+
+    } catch (err) {
+        // Log error
+        console.error("Error deleting order", err);
+
+        // Send error to next function in stack
+        next(err);
+    }
+} 
+
 
 
 //TODO: Get order by user
