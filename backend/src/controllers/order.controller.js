@@ -61,7 +61,7 @@ export const createOrder = async (req, res, next) => {
 /// /
 // Function to delete order
 /// /
-export const deleteOrder = async => {
+export const deleteOrder = async (req, res, next) => {
     try {
         const { orderId } = req.params;
 
@@ -70,11 +70,16 @@ export const deleteOrder = async => {
             return res.status(400).json({ message: `Invalid order id: ${orderId}` });
         };
 
-
         // Find and delete order
-        const deleteOrder = await Order.findByIdAndDelete(orderId).exec();
+        const deletedOrder = await Order.findByIdAndDelete(orderId).exec();
 
+        // If order is not found return error message
+        if (!deletedOrder) {
+            return res.status(404).json({ message: `Order with id: ${orderId} not found` });
+        }
 
+        // Return successresponse
+        return res.status(200).json({ message: `Order ${orderId} deleted successfully.` })
 
     } catch (err) {
         // Log error
@@ -88,5 +93,3 @@ export const deleteOrder = async => {
 
 
 //TODO: Get order by user
-
-//TODO: Delete order
