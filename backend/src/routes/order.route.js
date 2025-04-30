@@ -14,7 +14,7 @@ const orderRouter = express.Router();
 orderRouter.post('/', verifyToken, verifyRoles(ROLES.ADMIN, ROLES.USER), createOrder);
 
 // Delete order
-orderRouter.delete('/', verifyToken, verifyRoles(ROLES.ADMIN), deleteOrder);
+orderRouter.delete('/:orderId', verifyToken, verifyRoles(ROLES.ADMIN), deleteOrder);
 
 //TODO: Get order by user
 
